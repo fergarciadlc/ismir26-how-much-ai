@@ -6,10 +6,9 @@ Static page for the ISMIR 2026 paper. No build step: GitHub Pages serves `index.
 1. Push this folder to a repo (or to `/docs` in an existing one).
 2. Settings > Pages > Deploy from a branch > pick the branch and folder.
 
-## Placeholders to fill in `index.html`
-- `VIDEO PLACEHOLDER` (search for it): replace the placeholder div with the YouTube iframe shown in the comment.
-- `THESIS_URL`: link to the MSc thesis.
-- `SITE_URL`: the final page URL, in the `og:image` and `og:url` tags (for link previews).
+## Links
+- Live page: https://fergarciadlc.github.io/ismir26-how-much-ai/
+- MSc thesis: https://zenodo.org/records/23186445
 
 ## Assets
 - `assets/figs/`: figures cropped from the thesis PDF (same data as the paper).
