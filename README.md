@@ -9,6 +9,7 @@ Static page for the ISMIR 2026 paper. No build step: GitHub Pages serves `index.
 ## Links
 - Live page: https://fergarciadlc.github.io/ismir26-how-much-ai/
 - MSc thesis: https://zenodo.org/records/23186445
+- Paper: https://arxiv.org/abs/2608.07285
 
 ## Assets
 - `assets/figs/`: figures cropped from the thesis PDF (same data as the paper).
