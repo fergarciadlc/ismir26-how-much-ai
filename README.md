@@ -16,6 +16,7 @@ Static page for the ISMIR 2026 paper. No build step: GitHub Pages serves `index.
 ## Assets
 - `assets/figs/`: figures cropped from the thesis PDF (same data as the paper).
 - `assets/slides.pdf`: the 3-minute presentation slides.
+- `assets/poster.pdf`: the ISMIR 2026 poster.
 - `assets/diagrams/architecture.svg`: standalone copy of the architecture diagram (the page uses an inline copy so it follows dark mode).
 - `assets/logos/`, `assets/img/`: logos, the title illustration and the social preview card.
-- `assets/img/talk-poster.jpg`, `assets/img/slides-thumb.jpg`: local thumbnails for the talk section (the YouTube player only loads on click).
+- `assets/img/talk-poster.jpg`, `assets/img/slides-thumb.jpg`, `assets/img/poster-thumb.jpg`: local thumbnails for the talk section (the YouTube player only loads on click).
