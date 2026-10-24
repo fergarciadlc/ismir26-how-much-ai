@@ -73,6 +73,30 @@ h3.sub{font-size:clamp(28px,3.2vw,38px);margin:64px 0 14px}
 .bars span{display:block;height:9px;background:var(--accent);margin-bottom:12px}
 .bars span:first-child{width:180px}.bars span:last-child{width:100px}
 
+/* Talk */
+#talk{background:var(--surface)}
+.talk-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:28px;align-items:start;margin-top:8px}
+.video{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#0d1226;box-shadow:0 22px 48px -26px rgba(31,43,94,.6);border:1px solid var(--line)}
+.video a.poster,.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.video a.poster img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease,filter .35s ease}
+.video a.poster:hover img{transform:scale(1.025);filter:brightness(.92)}
+.play{position:absolute;z-index:1;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.55);transition:transform .2s ease}
+.play svg{width:34px;height:34px;margin-left:5px;fill:currentColor}
+.video a.poster:hover .play{transform:scale(1.08)}
+.video .tag{position:absolute;z-index:1;left:14px;bottom:14px;padding:3px 13px 4px;border-radius:999px;background:rgba(13,18,38,.82);font-family:var(--display);font-weight:600;font-size:19px;color:#fff;letter-spacing:.01em}
+.talk-side{display:grid;gap:16px}
+.res{display:block;text-decoration:none;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,transform .2s}
+.res:hover{border-color:var(--accent);transform:translateY(-2px);color:var(--ink)}
+.res img{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}
+.res .body{padding:14px 18px 16px}
+.res h3{font-size:24px;margin:0 0 2px}
+.res p{margin:0;font-size:15px;color:var(--muted);line-height:1.4}
+.res.row{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.res.row svg{width:26px;height:26px;flex:none;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.venue a{text-decoration-color:var(--accent)}
+@media (max-width:900px){.talk-grid{grid-template-columns:1fr}.talk-side{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.talk-side{grid-template-columns:1fr}.play{width:68px;height:68px;margin:-34px 0 0 -34px}}
+
 /* Nav */
 nav.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 nav.top .wrap{display:flex;align-items:center;gap:22px;height:58px;overflow-x:auto}
@@ -230,6 +254,7 @@ footer{padding:56px 0 64px;border-top:1px solid var(--line)}
 <nav class="top" aria-label="Sections">
   <div class="wrap">
     <a class="brand" href="#top">How Much AI Is in This Track?</a>
+    <a class="link" href="#talk">Talk</a>
     <a class="link" href="#alpha">The idea</a>
     <a class="link" href="#method">Method</a>
     <a class="link" href="#results">Results</a>
@@ -246,7 +271,7 @@ footer{padding:56px 0 64px;border-top:1px solid var(--line)}
   <div class="bars" aria-hidden="true"><span></span><span></span></div>
   <div class="wrap hero-grid">
     <div>
-      <p class="venue">ISMIR 2026, Abu Dhabi</p>
+      <p class="venue">ISMIR 2026, Abu Dhabi &middot; <a href="https://ismir2026program.ismir.net/poster_518.html">Poster P14-8</a></p>
       <h1>How Much AI Is in This Track?</h1>
       <p class="subtitle">Quantifying the proportion of AI-generated stems in hybrid music mixtures</p>
       <p class="authors">
@@ -261,6 +286,10 @@ footer{padding:56px 0 64px;border-top:1px solid var(--line)}
         <a class="btn primary" href="https://arxiv.org/abs/2608.07285">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
           Paper
+        </a>
+        <a class="btn" href="#talk">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+          Video
         </a>
         <a class="btn" href="assets/slides.pdf">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M12 17v4M8 21h8"/></svg>
@@ -289,6 +318,31 @@ footer{padding:56px 0 64px;border-top:1px solid var(--line)}
     <div class="prose">
       <p>AI-generated music is increasingly used at the stem level, with producers integrating synthetic drums, basslines or vocals alongside human-performed instruments. Current AI-music detectors are binary: they treat a track as either fully AI or fully human.</p>
       <p>We reformulate detection as regression on a continuous <strong>AI energy ratio α ∈ [0, 1]</strong>, the share of a mix’s energy that comes from AI-generated stems. To study it, we build hybrid mixtures with known α from a multi-track dataset and a neural audio codec. A binary detector with over 99% accuracy on pure tracks becomes a noisy, miscalibrated estimator of α on mixed content, and its sensitivity depends on the instrument. A model with the same backbone trained directly on α reaches MAE = 0.076 and R² = 0.85 on held-out mixtures from the same pipeline.</p>
+    </div>
+  </div>
+</section>
+
+<section id="talk">
+  <div class="wrap">
+    <h2>Watch the talk</h2>
+    <div class="talk-grid">
+      <div class="video" id="video" data-yt="XL09b3vsHAM">
+        <a class="poster" href="https://www.youtube.com/watch?v=XL09b3vsHAM" aria-label="Play the talk video on YouTube">
+          <img src="assets/img/talk-poster.jpg" width="1280" height="720" loading="lazy" alt="Slide from the talk showing the shared CNN backbone with a binary and a regression head.">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+          <span class="tag">ISMIR 2026 talk</span>
+        </a>
+      </div>
+      <div class="talk-side">
+        <a class="res" href="assets/slides.pdf">
+          <img src="assets/img/slides-thumb.jpg" width="800" height="450" loading="lazy" alt="Title slide of the presentation.">
+          <div class="body"><h3>Slides</h3><p>The 3-minute presentation, PDF.</p></div>
+        </a>
+        <a class="res row" href="https://ismir2026program.ismir.net/poster_518.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>
+          <div><h3>Official ISMIR page</h3><p>Session 14, poster 8.</p></div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -889,6 +943,21 @@ image.ar-px{image-rendering:pixelated}
   document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
     presets[b.dataset.preset].forEach((v,i)=>state[i]=!!v); render(); }));
   render();
+})();
+
+/* ---------- Click-to-load YouTube player ---------- */
+(function(){
+  const box=document.getElementById('video'), a=box.querySelector('a.poster');
+  a.addEventListener('click',e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.button) return;
+    e.preventDefault();
+    const f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/'+box.dataset.yt+'?autoplay=1&rel=0';
+    f.title='How Much AI Is in This Track? ISMIR 2026 talk';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+    f.allowFullscreen=true;
+    box.replaceChildren(f);
+  });
 })();
 
 /* ---------- Dark / light toggle ---------- */
